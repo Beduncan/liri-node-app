@@ -7,37 +7,39 @@ var T = new Twitter(keys.twitter);
 //needed for spoify api 
 var spotify = require('node-spotify-api')
 var S = new spotify(keys.spotify);
-
 //allows for user input
 var action = (process.argv[2]);
-//for best result input the title like this "the+goonies"
+//title for movie and song 
 var title = (process.argv[3]);
-
+//if else statments that determine which rule is used
 if (action === "my-tweets"){
 	var params = {
 		q: 'duner_guy',
+		
 		count: 20
 	};
 	T.get('search/tweets', params,searchedData);
 	function searchedData(err, data, response) {
-		console.log(data);
+		if(err){
+			console.log("error");
+		}else{
+			console.log(data);
+			console.log(data.text);
+		}
 	};	
 }else if (action === "spotify-this-song"){
-	S.search({ type: 'track', query: title }, function(err, data) {
-  if (err) {
-    return console.log('Error occurred: ' + err);
-  }
-        var song = data.tracks.items;
-        console.log(song);
-        
+	S.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
+  		if (err) {
+    		return console.log('Error occurred: ' + err);
+  		}
+        var song = data.tracks.items;        
         for (i = 0; i < song.length; i++){
-        console.log("Artist: " + song[i].artists[i].name);
-        console.log("Album Title: " + song[i].album.name);
-        console.log("Spotify Link: " + song[i].preview_url);
-        //***title doesnt display right***
-        console.log("Track Title: " + title);
+        	console.log("Artist: " + song[i].artists[i].name);
+        	console.log("Album Title: " + song[i].album.name);
+        	console.log("Spotify Link: " + song[i].preview_url);
+        	console.log("Track Title: " + song[i].name);
         } 
-	});
+});
 }else if (action === "movie-this"){
 	// require for the omdb api
 	 var request = require("request");
@@ -51,7 +53,7 @@ if (action === "my-tweets"){
     		console.log("Year Made: " + JSON.parse(body).Year);    		
     		console.log("The movie's imdb rating is: " + JSON.parse(body).imdbRating);
     		//***YOU NEED TO FIX THIS*** 
-    		console.log("The movie's Rotten Tomatoes rating is: " + JSON.parse(body).Rating.Source:RottenTomatoes);
+    		// console.log("The movie's Rotten Tomatoes rating is: " + JSON.parse(body).Rating.Source:RottenTomatoes);
     		console.log("Made In: " + JSON.parse(body).Country);
 			console.log("It was made in these Language(s): " + JSON.parse(body).Language); 
 			console.log("A PLot of the movie: " + JSON.parse(body).Plot);
