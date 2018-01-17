@@ -24,7 +24,6 @@ if (action === "my-tweets"){
 			console.log("error");
 		}else{
 			console.log(data);
-			console.log(data.text);
 		}
 	};	
 }else if (action === "spotify-this-song"){
@@ -43,23 +42,21 @@ if (action === "my-tweets"){
 }else if (action === "movie-this"){
 	// require for the omdb api
 	 var request = require("request");
-	 var queryUrl = "http://www.omdbapi.com/?t="+ title +"&y=&plot=short&apikey=trilogy"
+	 var queryUrl = "http://www.omdbapi.com/?t="+ title +"&y=&plot=short&tomatoes=true&apikey=trilogy"
 	console.log(queryUrl);
 	request(queryUrl, function(error, response, body) {
   		// If there were no errors and the response code was 200 
   		if (!error && response.statusCode === 200) {
-  			console.log(response);
     		console.log("Title: " + JSON.parse(body).Title);
     		console.log("Year Made: " + JSON.parse(body).Year);    		
     		console.log("The movie's imdb rating is: " + JSON.parse(body).imdbRating);
     		//***YOU NEED TO FIX THIS*** 
-    		// console.log("The movie's Rotten Tomatoes rating is: " + JSON.parse(body).Rating.Source:RottenTomatoes);
+    		console.log(response);
+    		console.log("The movie's Rotten Tomatoes rating is: " + JSON.parse(body).tomatoRotten);
     		console.log("Made In: " + JSON.parse(body).Country);
 			console.log("It was made in these Language(s): " + JSON.parse(body).Language); 
 			console.log("A PLot of the movie: " + JSON.parse(body).Plot);
     		console.log("Actors in this movie: " + JSON.parse(body).Actors);
-
-
   		}else{
   			console.log("failed");
   		}

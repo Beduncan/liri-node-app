@@ -7,4 +7,4 @@ To get started on this project for yourself the first thing you’ll need is to 
 
 You can get more help on this project from stack overflow.
 
-Bryant Duncan maintains and contributes to the project. s
+Bryant Duncan maintains and contributes to the project. 
