@@ -50,8 +50,6 @@ if (action === "my-tweets"){
     		console.log("Title: " + JSON.parse(body).Title);
     		console.log("Year Made: " + JSON.parse(body).Year);    		
     		console.log("The movie's imdb rating is: " + JSON.parse(body).imdbRating);
-    		//***YOU NEED TO FIX THIS*** 
-    		console.log(response);
     		console.log("The movie's Rotten Tomatoes rating is: " + JSON.parse(body).tomatoRotten);
     		console.log("Made In: " + JSON.parse(body).Country);
 			console.log("It was made in these Language(s): " + JSON.parse(body).Language); 
@@ -69,9 +67,8 @@ if (action === "my-tweets"){
  		console.log("error");
  		}
  		else {
- 			//***you need to make this run in terr.
-	 		console.log(data);
-
+ 			//this infomation needs to passed into the terrimanal as a parameter so then it will run the spotify action with the name of the song as the title varible. 
+	 		console.log(data);	
 		}
 	});
 }	
